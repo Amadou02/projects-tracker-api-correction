@@ -1,0 +1,86 @@
+let projects = [
+    {
+        id: 1,
+        name: 'Refonte du site web',
+        description: "Projet de refonte du site vitrine de l'entreprise",
+        startDate: '2024-01-15',
+        endDate: '2024-03-30',
+        status: 'in-progress',
+    },
+    {
+        id: 2,
+        name: 'Formation JavaScript',
+        description: "Création d'un module de formation sur JavaScript",
+        startDate: '2024-02-01',
+        endDate: '2024-04-01',
+        status: 'not-started',
+    },
+    {
+        id: 3,
+        name: 'Mise en place du CRM',
+        description: "Intégration d'un CRM pour l'équipe commerciale",
+        startDate: '2024-03-01',
+        endDate: '2024-06-30',
+        status: 'not-started',
+    },
+    {
+        id: 4,
+        name: "Développement de l'application mobile",
+        description: "Application mobile pour les services de l'entreprise",
+        startDate: '2024-04-01',
+        endDate: '2024-08-01',
+        status: 'not-started',
+    },
+    {
+        id: 5,
+        name: 'Campagne marketing',
+        description: "Lancement d'une campagne marketing en ligne",
+        startDate: '2024-02-15',
+        endDate: '2024-04-30',
+        status: 'in-progress',
+    },
+    {
+        id: 6,
+        name: 'Optimisation SEO',
+        description: 'Améliorer le référencement naturel du site',
+        startDate: '2024-01-10',
+        endDate: '2024-02-25',
+        status: 'completed',
+    },
+    {
+        id: 7,
+        name: 'Migration vers le cloud',
+        description: 'Migration des services internes vers le cloud',
+        startDate: '2024-03-15',
+        endDate: '2024-06-01',
+        status: 'not-started',
+    },
+    {
+        id: 8,
+        name: 'Formation interne sur les nouvelles technologies',
+        description: "Former l'équipe interne sur les technologies récentes",
+        startDate: '2024-05-01',
+        endDate: '2024-07-01',
+        status: 'not-started',
+    },
+    {
+        id: 9,
+        name: "Création d'un blog technique",
+        description:
+            "Développement d'un blog technique pour partager les connaissances",
+        startDate: '2024-01-20',
+        endDate: '2024-03-01',
+        status: 'completed',
+    },
+    {
+        id: 10,
+        name: 'Automatisation des tests',
+        description:
+            "Mise en place d'un système d'automatisation des tests unitaires",
+        startDate: '2024-04-01',
+        endDate: '2024-06-01',
+        status: 'not-started',
+    },
+]
+
+module.exports = projects

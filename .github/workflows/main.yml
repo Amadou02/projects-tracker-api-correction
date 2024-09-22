@@ -1,0 +1,51 @@
+name: Lint & Tests ESLint
+
+on:
+  pull_request:  
+  push: 
+    branches: ["main"]
+
+jobs:
+  setup-and-lint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Récupérer les sources depuis le repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.11.1'
+          cache: 'npm'
+
+      - name: Installer les dépendances 
+        run: npm ci
+
+      - name: Lint & formatage du code
+        run: npm run lint -- --fix && npm run format
+
+      - name: Auto commit des modifications dans le repository
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Apply ESLint & Prettier changes"
+
+  test-code:
+    runs-on: ubuntu-latest
+    needs: setup-and-lint  # Exécuter après linting
+    steps:
+      - name: Récupérer les sources depuis le repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.11.1'
+          cache: 'npm'
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Exécuter les tests
+        run: npm run test
