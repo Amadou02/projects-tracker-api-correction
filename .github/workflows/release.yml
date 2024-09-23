@@ -28,6 +28,18 @@ jobs:
           node-version: 20
           registry-url: https://npm.pkg.github.com/
           scope: '@Amadou02'
+      # Récupérer le dernier tag Git
+      - name: Get latest tag
+        id: get_tag
+        run: echo "::set-output name=tag::$(git describe --tags --abbrev=0)"
+      
+      # Mettre à jour le fichier package.json avec le dernier tag comme version
+      - name: Update package.json version
+        run: |
+          tag=${{ steps.get_tag.outputs.tag }}
+          echo "Using tag: $tag"
+          sed -i "s/\"version\": \".*\"/\"version\": \"$tag\"/" package.json
+          
       - run: npm ci
       - run: npm publish --registry=https://npm.pkg.github.com/ 
         env:
