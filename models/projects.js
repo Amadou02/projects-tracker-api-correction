@@ -1,4 +1,4 @@
-let projects = [
+const projects = [
     {
         id: 1,
         name: 'Refonte du site web',

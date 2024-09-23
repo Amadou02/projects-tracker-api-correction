@@ -6,7 +6,11 @@ const compact = new FlatCompat({})
 
 export default [
     pluginJs.configs.recommended,
-    ...compact.extends('airbnb', 'plugin:prettier/recommended'),
+    ...compact.extends(
+        'airbnb',
+        'plugin:prettier/recommended',
+        'plugin:jest/recommended'
+    ),
     {
         files: ['**/*.js'],
         languageOptions: {

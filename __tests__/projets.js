@@ -1,7 +1,7 @@
 const request = require('supertest')
 const app = require('../app')
 
-let projects = require('../models/projects')
+const projects = require('../models/projects')
 
 describe('Projects API', () => {
     /* Test GET all projects */
