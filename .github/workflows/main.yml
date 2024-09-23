@@ -33,6 +33,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Apply ESLint & Prettier changes"
+          file_pattern: "!**/.github/**"  # Exclut le dossier .github
 
   test-code:
     runs-on: ubuntu-latest
