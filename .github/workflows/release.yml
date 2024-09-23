@@ -1,0 +1,44 @@
+name: Publish release
+
+on: 
+    push:
+        tags: 
+            - 'v*.*.*'
+jobs:
+    build-and-publish:
+        runs-on: ubuntu-latest
+        permissions: 
+            contents: read
+            packages: write
+        steps:
+            - uses: actions/checkout@v4
+            - name: setup node environment
+              uses: actions/setup-node@v4
+              with:
+                node-version: '20.x'
+                cache: 'npm'
+            - name: installation des dépendances
+              run: npm ci
+            - run: npm run build --if-present
+            
+            # Créer une release sur GitHub
+            - name: Create GitHub Release
+              uses: ncipollo/release-action@v1
+              with:
+                token: ${{ secrets.GITHUB_TOKEN }}
+                tag: ${{ github.ref }}  # Utilise le tag créé
+                name: Release ${{ github.ref }}
+                body: |
+                  Release notes for version ${{ github.ref }}.
+                  Changes in this release include:
+                  - Change 1
+                  - Change 2
+                draft: false  # Définir sur true pour créer une release en brouillon
+                prerelease: false  # Définir sur true si c'est une pré-release
+
+                # Publier le package sur GitHub Packages si vous publiez un package npm
+            - name: Publish to GitHub Packages (npm)
+              run: npm publish
+              env:
+                NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Utilise le token pour authentifier la publication
+
