@@ -4,6 +4,7 @@ const router = express.Router()
 
 let projects = require('../models/projects')
 
+
 /* GET project listing */
 router.get('/', (req, res) => {
     res.status(200).json(projects)
