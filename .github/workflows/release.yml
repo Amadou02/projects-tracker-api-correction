@@ -5,7 +5,7 @@ on:
         tags: 
             - 'v*.*.*'
 jobs:
-    build-and-publish:
+    create-release:
         runs-on: ubuntu-latest
         permissions: 
             contents: read
@@ -35,4 +35,15 @@ jobs:
 
         outputs:
            ReleaseTag: ${{ steps.create_release.outputs.release_tag }}
+ 
+           # pass in as env variable
+    explore-essos:
+      runs-on: ubuntu-latest
+      needs: [create-release]
+      env:
+        RELEASE_TAG: ${{ needs.create-release.outputs.ReleaseTag }}
+      steps:
+        - run: npm publish
+          env:
+            NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Utilise le token pour authentifier la publication
 
